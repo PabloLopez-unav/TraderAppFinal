@@ -24,6 +24,15 @@
         <servlet-class>Logout</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ComprarServlet</servlet-name>
+        <servlet-class>ComprarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ComprarServlet</servlet-name>
+        <url-pattern>/comprar</url-pattern>
+    </servlet-mapping>
 
 
 
