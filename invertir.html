@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprar Acciones</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        select, input, button { padding: 8px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+<h1>📊 Comprar Acciones</h1>
+
+<label for="acciones">Selecciona una acción:</label>
+<select id="acciones">
+    <option value="ACS">ACS</option>
+    <option value="ANA">ACCIONA</option>
+    <option value="BBVA">BBVA</option>
+    <option value="BKT">BANKINTER</option>
+    <option value="ENG">ENAGAS</option>
+    <option value="AMS">AMADEUS</option>
+    <option value="ITX">INDITEX</option>
+    <option value="IBM">IBM</option>
+</select>
+<button id="consultarBtn">Consultar Evolución</button>
+
+<div id="tablaPrecios" style="margin-top: 20px;"></div>
+
+<div id="compraSection" style="display: none; margin-top: 30px;">
+    <h3>Comprar Acciones</h3>
+    <input type="number" id="cantidad" placeholder="Número de acciones" min="1">
+    <button id="comprarBtn">Comprar</button>
+    <p id="mensaje"></p>
+</div>
+
+<a href="menu.html">Volver al Menú</a>
+
+<script src="js/invertir.js"></script>
+</body>
+</html>
