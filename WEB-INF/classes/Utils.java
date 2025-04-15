@@ -9,19 +9,21 @@ public class Utils {
         str.append("</head>");
         str.append("<body>");
         str.append("<div class='menu'>");
-        //str.append("<a href='Menu'>Menu </a>");
-        str.append("<a href='Cartera'>Cartera Personal </a>");
-        //str.append("<a href='#'>Orders</a>");
-        //str.append("<a href='OrderEdit?id=10273'>Last order</a>");
-        //str.append("<a href='ProductList?id=45'>Category 45</a>");
+        str.append("<a href='Menu'>Menu </a>");
+        str.append("<a href='Cartera'>Mi Cartera </a>");
+        str.append("<a href='Historico'>Historico </a>");
+        //str.append("<a href='Comprar'>Comprar Acciones</a>");
+        //str.append("<a href='Vender'>Vender Acciones</a>");
         str.append("</div>");
-        str.append("<H2 align=\"center\">" + title + "</H2>");
         return str.toString();
     }
 
-    public static String footer(String title) {
+    public static String footer() {
         StringBuilder str = new StringBuilder();
         str.append("</body>");
+        str.append("<div class='logout'>");
+        str.append("<a href='Logout'>Cerrar Sesion</a>");
+        str.append("</div>");
         str.append("</html>");
         return str.toString();
     }
