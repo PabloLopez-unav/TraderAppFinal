@@ -73,7 +73,7 @@ public class Historico extends HttpServlet {
                 toClient.println("<td>" + String.format("%.2f$", resultSet.getDouble("Price")) + "</td>");
                 toClient.println("<td>" + resultSet.getString("Date") + "</td>");
                 
-                boolean isBought = resultSet.getBoolean("Bought/Sell");
+                boolean isBought = resultSet.getBoolean("BoughtSell");
                 toClient.println("<td>" + (isBought ? "Compra" : "Venta") + "</td>");
                 
                 toClient.println("</tr>");
