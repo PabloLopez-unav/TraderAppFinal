@@ -44,6 +44,22 @@ public class ConnectionUtils {
         return connection;
     }
 
+    public int getUserId(String username) {
+        String sql = "SELECT IDUser FROM Users WHERE username = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("IDUser");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener ID de usuario: " + e.getMessage());
+        }
+        return -1;
+    }
+
     public boolean tieneSaldoSuficiente(int userId, double cantidad) throws SQLException {
         String sql = "SELECT Balance FROM Users WHERE IDUser = ?";
         try (Connection conn = getConnection();
