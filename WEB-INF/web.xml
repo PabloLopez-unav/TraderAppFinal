@@ -29,6 +29,17 @@
         <servlet-class>ComprarServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>VenderServlet</servlet-name>
+        <servlet-class>VenderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VenderServlet</servlet-name>
+        <url-pattern>/Vender</url-pattern>
+    </servlet-mapping>
+
+
     <servlet-mapping>
         <servlet-name>ComprarServlet</servlet-name>
         <url-pattern>/comprar</url-pattern>
