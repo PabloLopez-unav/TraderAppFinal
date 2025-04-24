@@ -28,14 +28,17 @@ public class Historico extends HttpServlet {
 
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
-        toClient.println("<html><head><title>Historico</title>");
-        toClient.println("<style>table { border-collapse: collapse; width: 80%; margin: 20px 0; }");
-        toClient.println("th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }");
-        toClient.println("th { background-color: #f2f2f2; }");
-        toClient.println("tr:nth-child(even) { background-color: #f9f9f9; }</style></head>");
-        toClient.println("<body><h1 style='text-align:left'>Historico</h1>");
-        toClient.println("<div style='text-align:left'>");
-
+        toClient.println("<style>");
+        toClient.println("  body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }");
+        toClient.println("  table { border-collapse: collapse; width: 80%; margin: 20px 0; }");
+        toClient.println("  th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }");
+        toClient.println("  th { background-color: #f2f2f2; }");
+        toClient.println("  tr:nth-child(even) { background-color: #f9f9f9; }");
+        toClient.println("  .balance { text-align: left; font-size: 1.2em; margin-top: 20px; }");
+        toClient.println("  .balance-amount { font-weight: bold; color: #2e7d32; }");
+        toClient.println("</style></head>");
+        toClient.println("<body><h1 style='text-align: left'>Historico</h1>");
+        
         try {
             int filterId;
             String userSql = "SELECT IDUser FROM Users WHERE Username = ?";
@@ -54,7 +57,6 @@ public class Historico extends HttpServlet {
             filterId = userResult.getInt("IDUser");
             userStatement.close();
 
-            // Get transaction history
             String sql = "SELECT * FROM Transactions WHERE IDUser = ? ORDER BY Date DESC";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, filterId);

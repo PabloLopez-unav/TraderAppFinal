@@ -28,7 +28,6 @@ public class Cartera extends HttpServlet {
 
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
-        //toClient.println(Utils.header("Cartera"));
         toClient.println("<style>");
         toClient.println("  body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }");
         toClient.println("  table { border-collapse: collapse; width: 80%; margin: 20px 0; }");
@@ -61,7 +60,6 @@ public class Cartera extends HttpServlet {
             balance = userResult.getDouble("Balance");
             userStatement.close();
 
-            // Get portfolio data
             String sql = "SELECT * FROM Portfolio WHERE IDUser = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, filterId);
