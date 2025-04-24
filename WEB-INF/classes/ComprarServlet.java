@@ -19,7 +19,6 @@ public class ComprarServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(false);
 
-        // Verificar sesión
         if (session == null || session.getAttribute("username") == null) {
             out.write("{\"success\": false, \"message\": \"Usuario no autenticado\"}");
             return;
@@ -28,7 +27,6 @@ public class ComprarServlet extends HttpServlet {
         String username = (String) session.getAttribute("username");
 
         try {
-            // Leer datos JSON del request (simplificado)
             BufferedReader reader = request.getReader();
             StringBuilder sb = new StringBuilder();
             String line;
@@ -39,20 +37,16 @@ public class ComprarServlet extends HttpServlet {
             int cantidad = Integer.parseInt(json.split("\"cantidad\":")[1].split(",")[0]);
             double precio = Double.parseDouble(json.split("\"precio\":")[1].split("}")[0]);
 
-            // 1. Obtener ID del usuario
             int userId = getUserId(username);
             if (userId == -1) {
                 out.write("{\"success\": false, \"message\": \"Usuario no válido\"}");
                 return;
             }
 
-            // 2. Verificar saldo
             if (!tieneSaldoSuficiente(userId, cantidad * precio)) {
                 out.write("{\"success\": false, \"message\": \"Saldo insuficiente\"}");
                 return;
             }
-
-            // 3. Registrar transacción y actualizar saldo
             registrarTransaccion(userId, accion, cantidad, precio, true);
             actualizarPortfolio(userId, accion, cantidad, precio);
             actualizarSaldo(userId, -(cantidad * precio));
@@ -85,12 +79,10 @@ public class ComprarServlet extends HttpServlet {
     }
 
     private void registrarTransaccion(int userId, String accion, int cantidad, double precio, boolean esCompra) throws SQLException {
-        // Formato de fecha literal para Access antiguo (#MM/dd/yyyy#)
         String fechaHoy = new java.text.SimpleDateFormat("#MM/dd/yyyy#").format(new java.util.Date());
 
 
-        // Usar nombres de columnas sin caracteres especiales
-        String sql = "INSERT INTO Transactions (IDUser, StockName, Num, Price, [Date], BoughtSell) VALUES (?,?,?,?," + fechaHoy + ",?)";     //1, 'ACS', 3, 51, #04/16/2025#, 1
+        String sql = "INSERT INTO Transactions (IDUser, StockName, Num, Price, [Date], BoughtSell) VALUES (?,?,?,?," + fechaHoy + ",?)"; 
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, userId);

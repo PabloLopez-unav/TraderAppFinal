@@ -10,29 +10,27 @@ public class Login extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         connection = ConnectionUtils.getConnection(config);
+        System.out.println("Login");
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) 
             throws ServletException, IOException {
-        
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         
-        // If no credentials submitted, show login page
         if (login == null || password == null) {
+            System.out.println("LoginHTML");
             res.sendRedirect("Login.html");
             return;
         }
         
-        // Check credentials
         String loggedUser = check(connection, login, password);
-        
         if (loggedUser != null) {
-            // Successful login
             HttpSession session = req.getSession(true);
             session.setAttribute("username", loggedUser);
-            res.sendRedirect("Menu.html");
+            res.sendRedirect("Menu");
         } else {
+            System.out.println("LoginFailedHTML");
             res.sendRedirect("LoginFailed.html");
         }
     }

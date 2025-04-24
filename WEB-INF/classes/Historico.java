@@ -29,12 +29,12 @@ public class Historico extends HttpServlet {
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
         toClient.println("<html><head><title>Historico</title>");
-        toClient.println("<style>table { border-collapse: collapse; width: 80%; margin: 20px auto; }");
+        toClient.println("<style>table { border-collapse: collapse; width: 80%; margin: 20px 0; }");
         toClient.println("th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }");
         toClient.println("th { background-color: #f2f2f2; }");
         toClient.println("tr:nth-child(even) { background-color: #f9f9f9; }</style></head>");
-        toClient.println("<body><h1 style='text-align:center'>Historico</h1>");
-        toClient.println("<div style='text-align:center'>");
+        toClient.println("<body><h1 style='text-align:left'>Historico</h1>");
+        toClient.println("<div style='text-align:left'>");
 
         try {
             int filterId;
@@ -86,6 +86,7 @@ public class Historico extends HttpServlet {
             toClient.println("<pre>" + e.toString() + "</pre>");
         }
         
+        toClient.println(Utils.footer());
         toClient.println("</body></html>");
         toClient.close();
     }

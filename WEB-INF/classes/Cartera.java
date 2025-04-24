@@ -28,17 +28,17 @@ public class Cartera extends HttpServlet {
 
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
-        toClient.println(Utils.header("Cartera"));
+        //toClient.println(Utils.header("Cartera"));
         toClient.println("<style>");
         toClient.println("  body { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }");
-        toClient.println("  table { border-collapse: collapse; width: 80%; margin: 20px auto; }");
+        toClient.println("  table { border-collapse: collapse; width: 80%; margin: 20px 0; }");
         toClient.println("  th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }");
         toClient.println("  th { background-color: #f2f2f2; }");
         toClient.println("  tr:nth-child(even) { background-color: #f9f9f9; }");
-        toClient.println("  .balance { text-align: center; font-size: 1.2em; margin-top: 20px; }");
+        toClient.println("  .balance { text-align: left; font-size: 1.2em; margin-top: 20px; }");
         toClient.println("  .balance-amount { font-weight: bold; color: #2e7d32; }");
         toClient.println("</style></head>");
-        toClient.println("<body><h1 style='text-align:center'>Cartera Personal</h1>");
+        toClient.println("<body><h1 style='text-align:left'>Cartera Personal</h1>");
 
         try {
             int filterId;
@@ -68,8 +68,7 @@ public class Cartera extends HttpServlet {
             ResultSet resultSet = statement.executeQuery();
             
             toClient.println("<table>");
-            toClient.println("<tr><th>#</th><th>Nombre</th>");
-            toClient.println("<th>Acciones</th><th>Precio</th><th>Fecha</th></tr>");
+            toClient.println("<tr><th>#</th><th>Nombre</th><th>Acciones</th><th>Precio</th><th style='width: 150px;'>Fecha</th></tr>");
             
             int rowNumber = 1;
             while(resultSet.next()) {

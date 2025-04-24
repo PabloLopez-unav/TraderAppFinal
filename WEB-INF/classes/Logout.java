@@ -13,7 +13,6 @@ public class Logout extends HttpServlet {
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
-        
         response.sendRedirect("Login");
     }
     

@@ -22,7 +22,7 @@ public class Utils {
         StringBuilder str = new StringBuilder();
         str.append("</body>");
         str.append("<div class='logout'>");
-        str.append("<a href='Logout'>Cerrar Sesion</a>");
+        str.append("<a href='Menu'>&lt;&lt;&lt; Volver al men\u00FA</a>");
         str.append("</div>");
         str.append("</html>");
         return str.toString();
